@@ -3,6 +3,9 @@
 
 // for Tonal, DEFNITELY check docs on this!!
 
+// This can be used to log the karma output:
+// logLevel: config.LOG_DEBUG,
+
 var webpackConfig = require('./webpack.config.js');
 
 module.exports = function(config){
