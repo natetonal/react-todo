@@ -7,6 +7,11 @@ var TodoList = React.createClass({
         var {todos} = this.props;
 
         var renderTodos = () => {
+            if(todos.length === 0){
+                return(
+                    <p className="container__message">Nothing to do!</p>
+                );
+            }
             return todos.map((todo) => {
                 // You can use the spread (...) operator to send all properties of todo as this.props:
                 return (<Todo key={todo.id} {...todo} onToggle={this.props.onToggle} />);

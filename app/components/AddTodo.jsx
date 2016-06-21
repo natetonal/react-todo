@@ -20,7 +20,7 @@ var AddTodo = React.createClass({
         var {submitTodo} = this.props;
 
         return(
-            <div className="comp-addTodo">
+            <div className="container__footer">
                 <form ref="todoForm" onSubmit={this.handleSubmit}>
                     <label>Add a Todo:
                         <input ref="todoText" type="text" placeholder="e.g. 'Learn to code'" />
