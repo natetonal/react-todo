@@ -38,6 +38,6 @@ describe('TodoList', () => {
 
         var $el = $(ReactDOM.findDOMNode(todoList));
 
-        expect($el.find('container__message').length).toBe(1);
+        expect($el.find('p').length).toBe(1);
     });
 });
