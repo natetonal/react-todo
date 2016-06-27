@@ -34,13 +34,15 @@ export var todosReducer = (state = [], action) => {
             ];
         case 'TOGGLE_TODO':
             return state.map((todo) => {
-                var nextCompleted = !todo.completed;
                 if(todo.id === action.id){
+                    var nextCompleted = !todo.completed;
                     return {
                         ...todo,
                         completed: nextCompleted,
                         completedAt: nextCompleted ? moment().unix() : undefined
                     };
+                } else {
+                    return todo;
                 }
             });
         // Add case for TOGGLE_TODO (needs to match id in todos array, then modify by setting completed to !completed and update completedAt)

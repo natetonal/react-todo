@@ -1,7 +1,9 @@
 var React = require('react');
-var Todo = require('Todo');
+// Connect allows children to specify what data from the store they need.
+var {connect} = require('react-redux');
+import Todo from 'Todo';
 
-var TodoList = React.createClass({
+export var TodoList = React.createClass({
     render: function(){
 
         var {todos} = this.props;
@@ -14,7 +16,7 @@ var TodoList = React.createClass({
             }
             return todos.map((todo) => {
                 // You can use the spread (...) operator to send all properties of todo as this.props:
-                return (<Todo key={todo.id} {...todo} onToggle={this.props.onToggle} />);
+                return (<Todo key={todo.id} {...todo} />);
             })
         };
 
@@ -26,4 +28,11 @@ var TodoList = React.createClass({
     }
 });
 
-module.exports = TodoList;
+// This connects store to TodoList component.
+export default connect(
+    (state) => {
+        return{
+            todos: state.todos
+        };
+    }
+)(TodoList);

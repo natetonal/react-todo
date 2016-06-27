@@ -1,18 +1,18 @@
 var React = require('react');
+var {connect} = require('react-redux');
+var actions = require('actions');
 
-var AddTodo = React.createClass({
+export var AddTodo = React.createClass({
 
     handleSubmit: function(event){
         event.preventDefault();
-
+        var {dispatch} = this.props;
         var todoText = this.refs.todoText.value;
         if(todoText){
-            this.props.onSubmitTodo(todoText);
+            dispatch(actions.addTodo(todoText));
             this.refs.todoText.value = '';
-        } else {
-            this.refs.todoText.focus();
-            this.props.onSubmitTodo(null);
         }
+        // Could write an error handler here.
     },
 
     render: function(){
@@ -32,4 +32,4 @@ var AddTodo = React.createClass({
     }
 });
 
-module.exports = AddTodo;
+export default connect()(AddTodo);

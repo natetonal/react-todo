@@ -4,31 +4,35 @@ var expect = require('expect');
 var TestUtils = require('react-addons-test-utils');
 var $ = require('jQuery');
 
-var AddTodo = require('AddTodo');
+var {AddTodo} = require('AddTodo');
 
 describe('AddTodo', () => {
     it('should exist', () => {
         expect(AddTodo).toExist();
     });
 
-    it('should call onSubmitTodo if text is entered', () => {
+    it('should dispatch addTodo when valid todoText', () => {
+        var todoText = 'abcde';
+        var action = {
+            type: 'ADD_TODO',
+            text: todoText
+        }
         var spy = expect.createSpy();
         // After creating a spy, it can be injected into an instance of your component like so:
-        var addTodo = TestUtils.renderIntoDocument(<AddTodo onSubmitTodo={spy}/>);
+        var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
         var $el = $(ReactDOM.findDOMNode(addTodo));
-        var todoText = 'abcde';
 
         addTodo.refs.todoText.value = todoText;
         // TestUtils also has an object called "Simulate" that can run simulations. Submit, for example:
         TestUtils.Simulate.submit($el.find('form')[0]);
 
-        expect(spy).toHaveBeenCalledWith(todoText);
+        expect(spy).toHaveBeenCalledWith(action);
     });
 
-    it('should call onSubmitTodo with null if no text is entered', () => {
+    it('should not dispatch addTodo when invalid todoText', () => {
         var spy = expect.createSpy();
         // After creating a spy, it can be injected into an instance of your component like so:
-        var addTodo = TestUtils.renderIntoDocument(<AddTodo onSubmitTodo={spy}/>);
+        var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
         var $el = $(ReactDOM.findDOMNode(addTodo));
         var todoText = '';
 
@@ -36,6 +40,6 @@ describe('AddTodo', () => {
         // TestUtils also has an object called "Simulate" that can run simulations. Submit, for example:
         TestUtils.Simulate.submit($el.find('form')[0]);
 
-        expect(spy).toHaveBeenCalledWith(null);
+        expect(spy).toNotHaveBeenCalled();
     });
 });
