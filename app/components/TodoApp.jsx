@@ -4,7 +4,8 @@ var moment = require('moment');
 
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
-var TodoSearch = require('TodoSearch');
+import TodoSearch from 'TodoSearch';
+
 var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
@@ -60,7 +61,7 @@ var TodoApp = React.createClass({
                     <div className="column small-11 medium-6 large-5 small-centered">
                         <div className="container">
                             <TodoSearch onSearch={this.handleSearch} />
-                            <TodoList />
+                                <TodoList />
                             <AddTodo onSubmitTodo={this.handleAddTodo} />
                         </div>
                     </div>
