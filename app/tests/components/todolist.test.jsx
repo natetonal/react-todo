@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var {Provider} = require('react-redux');
 var expect = require('expect');
 var TestUtils = require('react-addons-test-utils');
-var $ = require('jQuery');
+var $ = require('jquery');
 
 // var TodoList = require('TodoList');
 // the import statement supports bringing in 'export default' module. This will eventually replace "require()"

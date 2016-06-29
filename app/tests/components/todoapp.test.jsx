@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var {Provider} = require('react-redux');
 var expect = require('expect');
 var TestUtils = require('react-addons-test-utils');
-var $el = require('jQuery');
+var $el = require('jquery');
 
 var configureStore = require('configureStore');
 var TodoApp = require('TodoApp');

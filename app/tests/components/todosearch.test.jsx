@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var expect = require('expect');
 var TestUtils = require('react-addons-test-utils');
-var $ = require('jQuery');
+var $ = require('jquery');
 
 // Make sure that you either test the unconnected component, or create a store for connected components you want to test.
 import {TodoSearch} from 'TodoSearch';
