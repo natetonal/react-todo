@@ -1,25 +1,7 @@
 var $ = require('jQuery');
 
 module.exports = {
-    setTodos: function(todos) {
-        if($.isArray(todos)){
-            localStorage.setItem('todos', JSON.stringify(todos));
-            return todos;
-        }
-    },
-    getTodos: function() {
-        var stringTodos = localStorage.getItem('todos');
-        var todos = [];
 
-        try {
-            todos = JSON.parse(stringTodos);
-        } catch(error) {
-
-        }
-
-        return $.isArray(todos) ? todos : [];
-
-    },
     filterTodos: function(todos, showCompleted, searchText){
         var filteredTodos = todos;
         // Filter by showCompleted
@@ -50,3 +32,24 @@ module.exports = {
         return filteredTodos;
     }
 };
+
+// These were used for storing in localStorage:
+// setTodos: function(todos) {
+//     if($.isArray(todos)){
+//         localStorage.setItem('todos', JSON.stringify(todos));
+//         return todos;
+//     }
+// },
+// getTodos: function() {
+//     var stringTodos = localStorage.getItem('todos');
+//     var todos = [];
+//
+//     try {
+//         todos = JSON.parse(stringTodos);
+//     } catch(error) {
+//
+//     }
+//
+//     return $.isArray(todos) ? todos : [];
+//
+// },

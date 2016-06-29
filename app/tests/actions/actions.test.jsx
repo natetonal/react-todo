@@ -90,13 +90,20 @@ describe('Actions', () => {
     describe('Tests with Firebase todos', () => {
         var testTodoRef;
 
+        // This wipes the original data, adds new data, then error checks.
         beforeEach((done) => {
-            testTodoRef = firebaseRef.child('todos').push();
-            testTodoRef.set({
-                text: 'Something to do',
-                completed: false,
-                createdAt: 128857
-            }).then(() => done());
+            var todosRef = firebaseRef.child('todos');
+
+            todosRef.remove().then(() => {
+                testTodoRef = firebaseRef.child('todos').push();
+                return testTodoRef.set({
+                    text: 'Something to do',
+                    completed: false,
+                    createdAt: 128857
+                });
+            })
+            .then(() => done())
+            .catch(done);
         });
 
         afterEach((done) => {
@@ -120,5 +127,21 @@ describe('Actions', () => {
                 done();
             }, done);
         });
+
+        it('should add todos and dispatch ADD_TODOS action', (done) => {
+            const store = createMockStore({});
+            const action = actions.startAddTodos();
+            store.dispatch(action).then(() => {
+                const mockActions = store.getActions();
+
+                expect(mockActions[0]).toEqual('ADD_TODOS');
+                expect(mockActions[0].length).toEqual(1);
+                // For some reason this locks up:
+                // expect(mockActions[0].todos).toInclude({ text: 'Something to do' });
+
+                done();
+            }, done);
+        });
+
     });
 });

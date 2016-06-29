@@ -12,14 +12,8 @@ var TodoAPI = require('TodoAPI');
 
 import './../playground/firebase/index';
 
-store.subscribe(() => {
-    var state = store.getState();
-    console.log('New state: ', store.getState());
-    TodoAPI.setTodos(state.todos);
-});
+store.dispatch(actions.startAddTodos());
 
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos))
 // Load foundation
 $(document).foundation();
 
@@ -33,3 +27,13 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
+
+// This is how the initialState was pulled using localStorage:
+// store.subscribe(() => {
+//     var state = store.getState();
+//     console.log('New state: ', store.getState());
+//     TodoAPI.setTodos(state.todos);
+// });
+
+// var initialTodos = TodoAPI.getTodos();
+// store.dispatch(actions.addTodos(initialTodos))
