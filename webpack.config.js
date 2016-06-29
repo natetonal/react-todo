@@ -22,7 +22,6 @@ module.exports = {
             warnings: false
         }
     })
-
   ],
   output: {
     path: __dirname,

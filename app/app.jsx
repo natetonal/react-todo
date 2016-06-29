@@ -14,6 +14,8 @@ import './../playground/firebase/index';
 
 store.dispatch(actions.startAddTodos());
 
+console.log(process.env.NODE_ENV);
+
 // Load foundation
 $(document).foundation();
 
