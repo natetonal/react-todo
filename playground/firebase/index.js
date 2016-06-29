@@ -1,48 +1,48 @@
-import firebase from 'firebase';
-
-var config = {
-    apiKey: "AIzaSyA_LMe-xU-f4gjjbIg9OqhkZK55aKImL5I",
-    authDomain: "nates-todo-app.firebaseapp.com",
-    databaseURL: "https://nates-todo-app.firebaseio.com",
-    storageBucket: "nates-todo-app.appspot.com",
-};
-
-firebase.initializeApp(config);
-
-var firebaseRef = firebase.database().ref();
-
-firebaseRef.set({
-    app: {
-        name: 'Todo App',
-        version: '0.0.1'
-   },
-   isRunning: true,
-   eatsPeople: false,
-   user: {
-       name: 'Nate',
-       age: 31
-   }
-});
-
-var todosRef = firebaseRef.child('todos');
-
-todosRef.on('child_added', (snapshot) => {
-    console.log('New todo added: ', snapshot.key, snapshot.val());
-});
-
-todosRef.push({
-    text: 'Eat delicious cakes',
-    createdAt: 1245,
-    completed: false,
-    completedAt: ''
-});
-
-todosRef.push({
-    text: 'Urinate on cats',
-    createdAt: 1125,
-    completed: false,
-    completedAt: ''
-});
+// import firebase from 'firebase';
+//
+// var config = {
+//     apiKey: "AIzaSyA_LMe-xU-f4gjjbIg9OqhkZK55aKImL5I",
+//     authDomain: "nates-todo-app.firebaseapp.com",
+//     databaseURL: "https://nates-todo-app.firebaseio.com",
+//     storageBucket: "nates-todo-app.appspot.com",
+// };
+//
+// firebase.initializeApp(config);
+//
+// var firebaseRef = firebase.database().ref();
+//
+// firebaseRef.set({
+//     app: {
+//         name: 'Todo App',
+//         version: '0.0.1'
+//    },
+//    isRunning: true,
+//    eatsPeople: false,
+//    user: {
+//        name: 'Nate',
+//        age: 31
+//    }
+// });
+//
+// var todosRef = firebaseRef.child('todos');
+//
+// todosRef.on('child_added', (snapshot) => {
+//     console.log('New todo added: ', snapshot.key, snapshot.val());
+// });
+//
+// todosRef.push({
+//     text: 'Eat delicious cakes',
+//     createdAt: 1245,
+//     completed: false,
+//     completedAt: ''
+// });
+//
+// todosRef.push({
+//     text: 'Urinate on cats',
+//     createdAt: 1125,
+//     completed: false,
+//     completedAt: ''
+// });
 
 // // New properties on the object can be created like this:
 // var notesRef = firebaseRef.child('notes');
