@@ -71,13 +71,19 @@ describe('Reducers', () => {
                     completedAt: undefined
                 }
             ];
+            var updates = {
+                completed: false,
+                completedAt: null
+            };
             var action = {
-                type: 'TOGGLE_TODO',
-                id: 1
+                type: 'UPDATE_TODO',
+                id: todos[0].id,
+                updates
             };
             var res = reducers.todosReducer(df(todos), df(action));
-            expect(res[0].completed).toEqual(!todos.completed);
-            expect(res[0].completedAt).toExist();
+            expect(res[0].completed).toEqual(updates.completed);
+            expect(res[0].completedAt).toEqual(updates.completedAt);
+            expect(res[0].text).toEqual(todos[0].text);
         });
         // define todos array with realistic todo item
         // generate action (id that matches id in todo item)
