@@ -2,14 +2,24 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var {Provider} = require('react-redux');
-var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-
-import TodoApp from 'TodoApp';
-import TodoLogin from 'TodoLogin';
+var {hashHistory} = require('react-router');
 
 var actions = require('actions');
 var store = require('configureStore').configure();
-var TodoAPI = require('TodoAPI');
+
+import firebase from 'app/firebase/';
+import router from 'app/router/';
+
+// onAuthStateChanged takes a function as its only argument, and passes "user" into its callback.
+// If "user" exists, someone is logged in. If not, then they're logged out.
+
+firebase.auth().onAuthStateChanged((user) => {
+    if(user){
+        hashHistory.push('todos');
+    } else {
+        hashHistory.push('/');
+    }
+});
 
 import './../playground/firebase/index';
 
@@ -22,15 +32,12 @@ $(document).foundation();
 // App css
 require('style!css!sass!applicationStyles')
 
+
+
 // The provider allows the entire app (or components you choose) access to the store.
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={hashHistory}>
-            <Route path="/">
-                <Route path="todos" component={TodoApp} />
-                <IndexRoute component={TodoLogin} />
-            </Route>
-        </Router>
+        {router}
     </Provider>,
   document.getElementById('app')
 );
