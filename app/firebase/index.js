@@ -13,6 +13,8 @@ try {
     console.log('Error with Firebase: ', e);
 }
 
+// This is needed to authenticate using social media
+export var githubProvider = new firebase.auth.GithubAuthProvider;
 export var firebaseRef = firebase.database().ref();
 
 export default firebase;

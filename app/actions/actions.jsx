@@ -1,4 +1,5 @@
-import firebase, {firebaseRef} from 'app/firebase/';
+// Pass in social authentication here:
+import firebase, {firebaseRef, githubProvider} from 'app/firebase/';
 import moment from 'moment';
 
 export var setSearchText = (searchText) => {
@@ -91,6 +92,27 @@ export var startToggleTodo = (id, completed) => {
 
         return todoRef.update(updates).then(() => {
             dispatch(updateTodo(id, updates));
+        });
+    };
+};
+
+export var startLogin = () => {
+    return (dispatch, getState) => {
+        firebase.auth().signInWithPopup(githubProvider).then((result) => {
+            // There's a ton of helpful data that comes back in the result object. Remember this!!!
+            console.log('Auth worked! ', result);
+        }, (error) => {
+            console.log('Unable to auth: ', error);
+        });
+    };
+};
+
+export var startLogout = () => {
+    return (dispatch, getState) => {
+        firebase.auth().signOut().then(() => {
+            console.log('Logged out!');
+        }, () => {
+
         });
     };
 };
