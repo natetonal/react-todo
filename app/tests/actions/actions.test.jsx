@@ -134,7 +134,7 @@ describe('Actions', () => {
             store.dispatch(action).then(() => {
                 const mockActions = store.getActions();
 
-                expect(mockActions[0]).toEqual('ADD_TODOS');
+                expect(mockActions[0]).toInclude({ type: 'ADD_TODOS' });
                 expect(mockActions[0].todos).toExist();
                 // For some reason this locks up:
                 // expect(mockActions[0].todos).toInclude({ text: 'Something to do' });

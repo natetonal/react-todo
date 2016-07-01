@@ -4,14 +4,15 @@ var envFile = require('node-env-file');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-console.log('environment: ', process.env.NODE_ENV);
-
+console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
 
 try {
-    envFile(`./config/${process.env.NODE_ENV}.env`);
+    envFile(`${__dirname}/config/${process.env.NODE_ENV}.env`);
 } catch(e) {
     console.log('error joining path for envFile.', e);
 }
+
+console.log('process.env.DATABASE_URL: ', process.env.DATABASE_URL);
 
 module.exports = {
   entry: [
@@ -19,13 +20,13 @@ module.exports = {
     'script!foundation-sites/dist/foundation.min.js',
     './app/app.jsx'
   ],
-  externals: {
-    jquery: 'jQuery'
-  },
+  // externals: {
+  //   jquery: 'jQuery'
+  // },
   plugins: [
     new webpack.ProvidePlugin({
-      '$': 'jquery',
-      'jQuery': 'jquery'
+      '$': 'jquery'
+    //   'jQuery': 'jquery'
     }),
     new webpack.optimize.UglifyJsPlugin({
         compressor: {

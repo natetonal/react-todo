@@ -12,9 +12,8 @@ var TodoAPI = require('TodoAPI');
 
 import './../playground/firebase/index';
 
+// Start fetching data from Firebase database
 store.dispatch(actions.startAddTodos());
-
-console.log(process.env.NODE_ENV);
 
 // Load foundation
 $(document).foundation();

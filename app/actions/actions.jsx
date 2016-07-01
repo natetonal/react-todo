@@ -56,12 +56,16 @@ export var startAddTodos = () => {
         var todosRef = firebaseRef.child('todos');
         return todosRef.once('value').then((snapshot) => {
             var todosObj = snapshot.val()
-            var todos = Object.keys(todosObj).map((todoKey) => {
-                return {
-                    ...snapshot.val()[todoKey],
-                    id: todoKey
-                };
-            });
+            var todos = [];
+            console.log('todosObj: ', todosObj);
+            if(todosObj){
+                todos = Object.keys(todosObj).map((todoKey) => {
+                    return {
+                        ...todosObj[todoKey],
+                        id: todoKey
+                    };
+                });
+            }
 
             dispatch(addTodos(todos));
 
