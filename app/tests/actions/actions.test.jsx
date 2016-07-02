@@ -26,7 +26,7 @@ describe('Actions', () => {
         expect(res).toEqual(action);
     });
 
-    it('should generate add todo action', () => {
+    it('should generate ADD_TODO action', () => {
         var action = {
             type: 'ADD_TODO',
             todo: {
@@ -56,7 +56,7 @@ describe('Actions', () => {
         }).catch(done);
     });
 
-    it('should generate add todos action', () =>{
+    it('should generate ADD_TODOS action', () =>{
         var todos = [
             {
                 id: 111,
@@ -83,6 +83,25 @@ describe('Actions', () => {
             }
         };
         var res = actions.updateTodo(action.id, action.updates);
+        expect(res).toEqual(action);
+        done();
+    });
+
+    it('should generate LOGIN action', (done) => {
+        var action = {
+            type: 'LOGIN',
+            uid: 'someuid'
+        };
+        var res = actions.login(action.uid);
+        expect(res).toEqual(action);
+        done();
+    });
+
+    it('should generate LOGOUT action', (done) => {
+        var action = {
+            type: 'LOGOUT'
+        };
+        var res = actions.logout();
         expect(res).toEqual(action);
         done();
     });

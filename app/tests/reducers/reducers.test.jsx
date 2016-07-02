@@ -2,7 +2,7 @@ var expect = require('expect');
 // Deep Freeze tests to make sure that pure functions remain pure (perfect for testing reducers)
 var df = require('deep-freeze-strict');
 
-var reducers = require('reducers');
+import * as reducers from 'reducers';
 
 describe('Reducers', () => {
     describe('searchTextReducer', () => {
@@ -61,7 +61,7 @@ describe('Reducers', () => {
             expect(res[0]).toEqual(todos[0]);
         });
 
-        it('toggle todo', () => {
+        it('should toggle todo', () => {
             var todos = [
                 {
                     id: 1,
@@ -88,5 +88,28 @@ describe('Reducers', () => {
         // define todos array with realistic todo item
         // generate action (id that matches id in todo item)
         // Call reducer and assert completed flipped
+    });
+
+    describe('authReducer', () => {
+        it('should add uid to auth on LOGIN', () => {
+            var action = {
+                type: 'LOGIN',
+                uid: 'someuid'
+            };
+            var res = reducers.authReducer(df({}), df(action));
+            expect(res).toExist();
+            expect(res.uid).toEqual('someuid');
+        });
+
+        it('should wipe auth on LOGOUT', () => {
+            var auth = {
+                uid: 'someuid'
+            };
+            var action = {
+                type: 'LOGOUT'
+            };
+            var res = reducers.authReducer(df(auth), df(action));
+            expect(res).toEqual({});
+        });
     });
 });
