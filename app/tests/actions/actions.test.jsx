@@ -90,6 +90,15 @@ describe('Actions', () => {
         done();
     });
 
+    it('should generate CLEAR_TODOS_ON_LOGOUT action', (done) => {
+        var action = {
+            type: 'CLEAR_TODOS_ON_LOGOUT'
+        };
+        var res = actions.clearTodosOnLogout();
+        expect(res).toEqual(action);
+        done();
+    });
+
     describe('Tests with Firebase todos', () => {
         var testTodoRef;
         var uid;

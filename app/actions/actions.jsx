@@ -84,6 +84,12 @@ export var updateTodo = (id, updates) => {
     };
 };
 
+export var clearTodosOnLogout = () => {
+    return {
+        type: 'CLEAR_TODOS_ON_LOGOUT'
+    };
+};
+
 export var startToggleTodo = (id, completed) => {
     return (dispatch, getState) => {
         var uid = getState().auth.uid;

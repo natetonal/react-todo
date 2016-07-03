@@ -59,7 +59,8 @@ export var todosReducer = (state = [], action) => {
             });
         // Add case for TOGGLE_TODO (needs to match id in todos array, then modify by setting completed to !completed and update completedAt)
         // Use moment for completed at if completed, clear if uncompleting.
-
+        case 'CLEAR_TODOS_ON_LOGOUT':
+            return [];
         default:
             return state;
     }
