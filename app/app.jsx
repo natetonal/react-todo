@@ -16,6 +16,8 @@ import router from 'app/router/';
 firebase.auth().onAuthStateChanged((user) => {
     if(user){
         store.dispatch(actions.login(user.uid));
+        // Start fetching data from Firebase database
+        store.dispatch(actions.startAddTodos());
         hashHistory.push('todos');
     } else {
         store.dispatch(actions.logout());
@@ -24,9 +26,6 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 import './../playground/firebase/index';
-
-// Start fetching data from Firebase database
-store.dispatch(actions.startAddTodos());
 
 // Load foundation
 $(document).foundation();
